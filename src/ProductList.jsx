@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addItem } from './CartSlice'; // Import addItem from CartSlice
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem } from '../features/CartSlice';
 import CartItem from './CartItem';
-import './ProductList.css';
+import '../styles/ProductList.css';
 
 function ProductList({ onHomeClick }) {
   const [showCart, setShowCart] = useState(false);
-  const [showPlants, setShowPlants] = useState(true); // Default to showing plants
-  const [addedToCart, setAddedToCart] = useState({}); // Track added plants
+  const [showPlants, setShowPlants] = useState(true);
+  const [addedToCart, setAddedToCart] = useState({});
   const dispatch = useDispatch();
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity); // Access total quantity
 
   const plantsArray = [
     {
@@ -341,15 +342,16 @@ function ProductList({ onHomeClick }) {
                 <circle cx="80" cy="216" r="12"></circle>
                 <circle cx="184" cy="216" r="12"></circle>
                 <path
-                  d="M42.3,72H221.7l-26.4,92.4A15.9,15.9,0,0,1,179.9,176H84.1a15.9,15.9,0,0,1-15.4-11.6L32.5,37.8Ade,8,0,0,0,24.8,32H8"
+                  d="M42.3,72H221.7l-26.4,92.4A15.9,15.9,0,0,1,179.9,176H84.1a15.9,15.9,0,0,1-15.4-11.6L32.5,37.8A8,8,0,0,0,24.8,32H8"
                   fill="none"
                   stroke="#faf9f9"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
                   id="mainIconPathAttribute"
                 ></path>
               </svg>
+              ({totalQuantity})
             </a>
           </div>
         </div>

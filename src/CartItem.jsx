@@ -35,7 +35,7 @@ function CartItem({ onContinueShopping }) {
       if (item.quantity > 1) {
         dispatch(updateQuantity({ id, quantity: item.quantity - 1 }));
       } else {
-        dispatch(removeItem(id)); 
+        dispatch(removeItem(id));
       }
     }
   };
